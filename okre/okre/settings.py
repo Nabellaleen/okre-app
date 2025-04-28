@@ -20,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+# TODO: Set this to a random value in production
 SECRET_KEY = 'django-insecure-0dw&4t9%^i-fh$ip#_2$m)0s5=z!mydpss76^l@nll2ff@v0a0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     # 'allauth.socialaccount',
+
+    ## Django REST framework
+    'rest_framework',
 
     # Apps from the project
     'accounts.apps.AccountsConfig',
@@ -122,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -151,3 +155,14 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None # Use email for authentication
 ACCOUNT_UNIQUE_EMAIL = True # Ensure email is unique
 ACCOUNT_EMAIL_VERIFICATION = 'optional' # Email verification is optional
 LOGIN_REDIRECT_URL = '/' # Redirect to home after login
+
+# Django REST framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+}
