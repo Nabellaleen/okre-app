@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from organization.models import Team
+
 class UserManager(BaseUserManager):
     """
     Custom manager for the User model.
@@ -68,6 +70,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
+    organizations = models.ManyToManyField(
+        Team,
+        related_name='members',
+        blank=True,
+        help_text=_("The organizations this user is a member of."),
+    )
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
@@ -75,3 +84,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
+    def get_username(self):
+        """
+        Return the username of the user.
+        Implemented to return the part of the email before the '@' symbol.
+        """
+        return self.email.split('@')[0]

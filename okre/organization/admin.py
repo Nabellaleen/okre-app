@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from common.admin_mixins import ConfigurableRelatedFieldWidgetMixin
+
 from .models import Team
 
 class TeamInline(admin.TabularInline):
@@ -11,6 +13,28 @@ class TeamInline(admin.TabularInline):
     readonly_fields = ('created_at', 'updated_at')
     extra = 0
     fk_name = 'parent'
+
+    verbose_name = "Team"
+    verbose_name_plural = "Teams"
+
+
+class TeamMemberInline(ConfigurableRelatedFieldWidgetMixin, admin.TabularInline):
+    """
+    Inline admin class for the TeamMember model.
+    """
+    model = Team.members.through
+    fields = ('user',)
+    extra = 0
+
+    verbose_name = "Member"
+    verbose_name_plural = "Members"
+
+    INLINE_RELATED_CONFIG = {
+        'user': {
+            'can_add_related': False,
+            'can_change_related': False,
+        },
+    }
 
 
 @admin.register(Team)
@@ -25,7 +49,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('name', 'created_at', 'updated_at')
     list_filter = ('is_organization',)
     search_fields = ('name',)
-    inlines = [TeamInline]
+    inlines = [TeamInline, TeamMemberInline]
 
     def get_queryset(self, request):
         """
