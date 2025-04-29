@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # Apps from the project
     'accounts.apps.AccountsConfig',
     'organization.apps.OrganizationConfig',
+    'okr.apps.OkrConfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
