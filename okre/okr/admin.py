@@ -1,6 +1,15 @@
 from django.contrib import admin
 
-from .models import Objective
+from .models import Objective, KeyResult
+
+
+class KeyResultInline(admin.TabularInline):
+    """
+    Inline admin class for KeyResult model to display within Objective admin.
+    """
+    model = KeyResult
+    extra = 0
+
 
 @admin.register(Objective)
 class ObjectivesAdmin(admin.ModelAdmin):
@@ -12,3 +21,5 @@ class ObjectivesAdmin(admin.ModelAdmin):
     list_filter = ('team',)
     ordering = ('-created_at',)
     date_hierarchy = 'created_at'
+
+    inlines = [KeyResultInline]
