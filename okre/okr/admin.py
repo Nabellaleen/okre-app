@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Objective, KeyResult
 
 
-class KeyResultInline(admin.TabularInline):
+class KeyResultInline(admin.StackedInline):
     """
     Inline admin class for KeyResult model to display within Objective admin.
     """

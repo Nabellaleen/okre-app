@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html_join
 
 from common.admin_mixins import ConfigurableRelatedFieldWidgetMixin
 from okr.models import Objective
@@ -37,13 +38,28 @@ class TeamMemberInline(ConfigurableRelatedFieldWidgetMixin, admin.TabularInline)
         },
     }
 
-class TeamObjectivesInline(admin.TabularInline):
+class TeamObjectivesInline(admin.StackedInline):
     """
     Inline admin class for the Objectives model.
     """
     model = Objective
-    fields = ('title', 'description')
+    fields = ('title', 'description', 'key_results_list')
+    readonly_fields = ('key_results_list',)
     extra = 0
+    
+    show_change_link = True
+    
+    def key_results_list(self, obj):
+        print("-----")
+        key_results = obj.key_results.all()
+        if not key_results:
+            return "No Key Results"
+        return format_html_join(
+            '\n',
+            '<li>{}</li>',
+            [(str(kr),) for kr in key_results]
+        )
+
 
 
 @admin.register(Team)
