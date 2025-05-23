@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'organization.apps.OrganizationConfig',
     'okr.apps.OkrConfig',
+    'front.apps.FrontConfig',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
