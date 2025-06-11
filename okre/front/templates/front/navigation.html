@@ -1,7 +1,7 @@
 {% extends "front/base.html" %}
 
 {% block title %}
-    OKRE | Tableau de bord
+    Tableau de bord | OKRE
 {% endblock %}
 
 {% block page-title %}
@@ -9,19 +9,6 @@
 {% endblock %}
 
 {% block content %}
-<nav>
-    <div class="nav-title">OKRE</div>
-    <div class="nav-organization">
-        <span class="nav-organization-name">{{ organization.name }}</span>
-    </div>
-    <div class="nav-menu"></div>
-    <div class="nav-user">
-        <span class="nav-user-name">{{ user.get_username }}</span>
-    </div>
-</nav>
-
-<h1>Tableau de bord</h1>
-
 <h2>Objectifs stratégiques</h2>
 
 <ul>
@@ -31,6 +18,7 @@
 </ul>
 
 <h2>Équipes</h2>
+
 <ul>
     {% for team in organization.teams.all %}
         <li>{{ team.name }}</li>

@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: dracula --default;
+}
 
 /**
   * A catch-all path to Django template files, JavaScript, and Python files
