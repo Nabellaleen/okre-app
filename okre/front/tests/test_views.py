@@ -25,11 +25,11 @@ def test_navigation_view(client):
     assert html.escape(organization.name) in content
     assert html.escape(user.get_username()) in content
 
-    # for objective in organization.objectives.all():
-    #     assert objective.title in content
+    for objective in organization.objectives.all():
+        assert objective.title in content
 
-    # for team in organization.teams.all():
-    #     assert team.name in content
-    #     for objective in team.objectives.all():
-    #         assert objective.title in content
+    for team in organization.teams.all():
+        assert team.name in content
+        for objective in team.objectives.all():
+            assert objective.title in content
 
