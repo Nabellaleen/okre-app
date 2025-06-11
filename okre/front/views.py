@@ -7,4 +7,9 @@ def navigation_view(request):
     """
     View function to render the navigation page.
     """
-    return render(request, 'front/navigation.html')
+    user = request.user
+    organization = user.get_default_organization()
+    return render(request, 'front/navigation.html', {
+        'user': user,
+        'organization': organization
+    })
