@@ -10,6 +10,5 @@ def navigation_view(request):
     user = request.user
     organization = user.get_default_organization()
     return render(request, 'front/navigation.html', {
-        'user': user,
         'organization': organization
     })
