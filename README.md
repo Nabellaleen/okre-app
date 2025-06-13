@@ -1,4 +1,6 @@
-![GitHub License](https://img.shields.io/github/license/Nabellaleen/okre-app)
+![GitHub License](https://img.shields.io/github/license/Nabellaleen/okre-app?logo=gnu&color=663066)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Nabellaleen/okre-app/CI.yml?label=build%20%26%20test)
+
 
 # OKRE
 
