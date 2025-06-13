@@ -10,8 +10,8 @@
     "dev": "cross-env NODE_ENV=development postcss ./src/styles.css -o ../static/css/dist/styles.css --watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "MIT",
+  "author": "Florian Briand (Digital Engine)",
+  "license": "AGPL-3.0-only",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.0",
     "@tailwindcss/typography": "^0.5.16",
