@@ -12,17 +12,23 @@
 <ul class="list rounded-box shadow-md bg-base-200">
     <li class="p-4 text-2xl font-bold tracking-wide"><h2>Objectifs stratégiques</h2></li>
     {% for objective in organization.objectives.all %}
-        <li class="list-row pl-8">{{ objective.title }}</li>
+        {% include "front/partials/objective_row.html" with objective=objective extra_class="pl-8" %}
     {% endfor %}
 </ul>
 
 <ul class="mt-4 list rounded-box shadow-md bg-base-200">
     <li class="p-4 text-2xl font-bold tracking-wide"><h2>Équipes</h2></li>
     {% for team in organization.teams.all %}
-        <li class="list-row pl-8">{{ team.name }}</li>
+        <li class="list-row pl-8">
+            <div>{{ team.name }}</div>
+        </li>
         <ul class="list pl-10">
             {% for objective in team.objectives.all %}
-                <li class="list-row">{{ objective.title }}</li>
+                {% include "front/partials/objective_row.html" with objective=objective %}
+            {% empty %}
+                <li class="list-row opacity-40">
+                    <div class="list-col-grow">Aucun objectif</div>
+                </li>
             {% endfor %}
         </ul>
     {% endfor %}

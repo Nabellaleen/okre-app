@@ -16,6 +16,25 @@ class Objective(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_advancement(self):
+        """
+        Calculate the advancement of the objective based on its key results.
+        Returns a dictionary with the total target and current values,
+        and the advancement percentage.
+        """
+        key_results = self.key_results.all()
+        total_target = sum(kr.target_value for kr in key_results)
+        total_current = sum(kr.current_value for kr in key_results)
+        if total_target > 0:
+            advancement = round((total_current / total_target) * 100, 2)
+        else:
+            advancement = 0
+        return {
+            "total_target": total_target,
+            "total_current": total_current,
+            "advancement": advancement,
+        }
 
 
 class KeyResult(models.Model):
