@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # Include allauth URLs
     path('front/', include('front.urls', namespace='front')),
+    path('__reload__/', include('django_browser_reload.urls')),
 ]

@@ -91,3 +91,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         Implemented to return the part of the email before the '@' symbol.
         """
         return self.email.split('@')[0]
+    
+    def get_default_organization(self):
+        """
+        Return the default personal organization for the user.
+        If no personal organization exists, return None.
+        """
+        return self.organizations.filter(is_organization=True).first()

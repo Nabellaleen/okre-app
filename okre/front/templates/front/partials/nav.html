@@ -1,0 +1,9 @@
+
+<nav class="navbar bg-base-100 border-b border-base-300 px-4">
+    <div class="navbar-start">
+        <a class="btn btn-ghost normal-case text-xl" href="{% url 'front:navigation' %}">OKRE</a>
+    </div>
+    <div class="navbar-end">
+        {% include "front/partials/organization_select.html" %}
+    </div>
+</nav>

@@ -1,0 +1,21 @@
+{% extends "theme/base.html" %}
+
+{% block body %}
+<div class="min-h-screen bg-base-100">
+    <div class="bg-base-200 pb-32">
+        {% include "front/partials/nav.html" %}
+        <header class="max-w-7xl mx-auto py-10 px-4">
+            <h1 class="text-3xl uppercase font-bold text-base-content tracking-tight">
+                {% block page-title %}...{% endblock %}
+            </h1>
+        </header>
+    </div>
+
+    <main class="-mt-32 px-4">
+        <div class="max-w-7xl mx-auto bg-base-300 p-6 rounded-lg shadow">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+</div>
+{% endblock %}

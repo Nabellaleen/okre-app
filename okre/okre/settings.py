@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     ## Django REST framework
     'rest_framework',
 
+    ## Tailwind CSS
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+
     # Apps from the project
     'accounts.apps.AccountsConfig',
     'organization.apps.OrganizationConfig',
@@ -67,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware', # Added for django-allauth
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -169,3 +175,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
 }
+
+# Tailwind CSS settings
+TAILWIND_APP_NAME = 'theme'

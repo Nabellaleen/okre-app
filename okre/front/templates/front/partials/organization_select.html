@@ -1,0 +1,10 @@
+<label for="select_organization" class="select select">
+  <span class="label">Organisation</span>
+  {% with user.get_default_organization as default_organization %}
+  <select id="select_organization" name="selected_organization" disabled>
+    {% for organization in user.organizations.all %}
+    <option value="{{ organization.id }}" {% if organization.id == default_organization.id %}selected{% endif %}>{{ organization.name }}</option>
+    {% endfor %}
+  </select>
+  {% endwith %}
+</label>
