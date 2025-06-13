@@ -34,7 +34,7 @@ setting, tracking, and achieving goals collaboratively.
 
 ### Requirements
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - Node 20 or higher _(used by [Django-Tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html#configuration-of-the-path-to-the-npm-executable))_
 
 ### Installation
