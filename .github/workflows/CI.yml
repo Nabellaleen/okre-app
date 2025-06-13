@@ -25,6 +25,7 @@ jobs:
       with:
         node-version: '22'
         cache: 'npm'
+        cache-dependency-path: '.okre/theme/static_src/package-lock.json'
 
     - name: Install Dependencies
       run: |
