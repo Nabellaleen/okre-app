@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+        cache: 'npm'
 
     - name: Install Dependencies
       run: |
@@ -27,9 +32,16 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Migrations
+      working-directory: ./okre
       run: |
         python manage.py migrate --no-input
 
+    - name: Build Tailwind static files
+      working-directory: ./okre
+      run: |
+        python manage.py tailwind build
+
     - name: Run Tests
+      working-directory: ./okre
       run: |
         python manage.py test
