@@ -55,3 +55,12 @@ class KeyResult(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.current_value}/{self.target_value})"
+    
+    def get_min_max_values(self):
+        """
+        Get the minimum and maximum values for the key result.
+        Returns a tuple of (min_value, max_value).
+        """
+        min_value = min(self.current_value, self.target_value)
+        max_value = max(self.current_value, self.target_value)
+        return (min_value, max_value)

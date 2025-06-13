@@ -1,0 +1,78 @@
+{% extends "front/base.html" %}
+
+{% block title %}
+    {{ objective.title }} | Objectif | OKRE
+{% endblock %}
+
+{% block page-title %}
+    {{ objective.title }}
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="{% url 'front:navigation' %}">{{ objective.team }}</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="flex w-full gap-4">
+    <div class="card card-border bg-base-200 shadow-md grow">
+        <div class="card-body">
+            <p class="text-lg">
+            {{ objective.description|safe }}
+            </p>
+        </div>
+    </div>
+    <div class="stats bg-base-200 shadow-md shrink-0">
+        <div class="stat">
+            <div class="stat-title">Avancement</div>
+            <div class="stat-value">{{ objective.get_advancement.advancement }}%</div>
+            <div class="stat-desc">{{ objective.get_advancement.total_current }} / {{ objective.get_advancement.total_target }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="card bg-base-200 shadow-md mt-4">
+    <div class="card-body">
+        <h2 class="card-title text-2xl tracking-wide">
+            Résultats clés
+        </h2>
+        <ul class="list">
+            {% load l10n %}
+            {% for key_result in objective.key_results.all %}
+            {% with key_result.get_min_max_values as values %}
+            <li class="list-row pl-8 block">
+                <div class="collapse collapse-arrow">
+                    <input type="checkbox" />
+                    <div class="collapse-title join gap-4">
+                        <div class="join-item text-lg grow">
+                            {{ key_result.title }}
+                        </div>
+                        <div class="join-item">
+                            <div class="badge badge-soft badge-primary">
+                                {{ key_result.current_value|floatformat:"0" }} ➠
+                                {# ⇾➞➙➡➧➠➨➲➩⭢⮕⮚⮞🠊🠲🡆 #}
+                                {{ key_result.target_value|floatformat:"0" }}
+                            </div>
+                        </div>
+                        <div class="join-item">
+                            <progress class="progress progress-primary w-48"
+                                title="{{ values.0|floatformat:"0" }}/{{ values.1|floatformat:"0" }}"
+                                value="{{ values.0|unlocalize }}"
+                                max="{{ values.1|unlocalize }}"
+                            ></progress>
+                        </div>
+                    </div>
+                    <div class="collapse-content list-col-wrap text-base">
+                        {{ key_result.description|safe }}
+                    </div>
+                </div>
+            </li>
+            {% endwith %}
+            {% empty %}
+            <li class="list-row opacity-40 block">
+                <div class="list-col-grow text-lg">Aucun résultat clé</div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

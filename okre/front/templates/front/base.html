@@ -8,6 +8,12 @@
             <h1 class="text-3xl uppercase font-bold text-base-content tracking-tight">
                 {% block page-title %}...{% endblock %}
             </h1>
+            <div class="breadcrumbs text-sm">
+                <ul>
+                {% block breadcrumbs %}
+                {% endblock %}
+                </ul>
+            </div>
         </header>
     </div>
 

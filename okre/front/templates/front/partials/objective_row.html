@@ -1,15 +1,21 @@
 {% load l10n %}
-<li class="list-row {{ extra_class|default:"" }}">
-    <div class="list-col-grow">{{ objective.title }}</div>
-    <div>
-        <div class="tooltip tooltip-primary" data-tip="{{ objective.get_advancement.advancement|floatformat:"0" }}% ({{ objective.get_advancement.total_current|floatformat:"0" }}/{{ objective.get_advancement.total_target|floatformat:"0" }})">
-            <progress class="progress progress-primary w-48 mr-4"
-                        title="{{ objective.get_advancement.total_current|floatformat:"0" }}/{{ objective.get_advancement.total_target|floatformat:"0" }}"
-                        value="{{ objective.get_advancement.advancement|unlocalize }}"
-                        max="100"></progress>
+{% if not deactivated %}
+<a href="{% url 'front:objective' objective.id %}" class="block no-underline hover:bg-base-100">
+{% endif %}
+    <li class="list-row {{ extra_class|default:"" }}">
+        <div class="list-col-grow text-base">{{ objective.title }}</div>
+        <div>
+            <div class="tooltip tooltip-primary" data-tip="{{ objective.get_advancement.advancement|floatformat:"0" }}% ({{ objective.get_advancement.total_current|floatformat:"0" }}/{{ objective.get_advancement.total_target|floatformat:"0" }})">
+                <progress class="progress progress-primary w-48 mr-4"
+                            title="{{ objective.get_advancement.total_current|floatformat:"0" }}/{{ objective.get_advancement.total_target|floatformat:"0" }}"
+                            value="{{ objective.get_advancement.advancement|unlocalize }}"
+                            max="100"></progress>
+            </div>
         </div>
-    </div>
-    <div>
-        <div class="badge badge-outline badge-primary">{{ objective.key_results.count }} KR</div>
-    </div>
-</li>
+        <div>
+            <div class="badge badge-outline badge-primary">{{ objective.key_results.count }} KR</div>
+        </div>
+    </li>
+{% if not deactivated %}
+</a>
+{% endif %}
