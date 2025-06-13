@@ -32,6 +32,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Install Tailwind node dependencies
+      working-directory: ./okre
+      run: |
+        python manage.py tailwind install
+
     - name: Run Migrations
       working-directory: ./okre
       run: |
