@@ -1,4 +1,6 @@
-![GitHub License](https://img.shields.io/github/license/Nabellaleen/okre-app)
+![GitHub License](https://img.shields.io/github/license/Nabellaleen/okre-app?logo=gnu&color=663066)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Nabellaleen/okre-app/CI.yml?label=build%20%26%20test)
+
 
 # OKRE
 
@@ -34,7 +36,7 @@ setting, tracking, and achieving goals collaboratively.
 
 ### Requirements
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - Node 20 or higher _(used by [Django-Tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html#configuration-of-the-path-to-the-npm-executable))_
 
 ### Installation
